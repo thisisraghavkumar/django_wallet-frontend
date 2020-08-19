@@ -3,6 +3,7 @@ import Profile from './Profile';
 import {Link} from 'react-router-dom';
 import TransactionList from './TransactionList';
 import PaymentBar from './PaymentBar';
+import AddToContact from './AddToContact';
 
 // dummy transactions
 const txList = [
@@ -24,7 +25,7 @@ class ProfilePage extends Component {
                         myAddress: null, 
                         currentAddress: this.props.match.params.address, 
                         currentBalance: 0,
-                        transactions: []
+                        transactions: [],
                     };
     }
 
@@ -77,6 +78,7 @@ class ProfilePage extends Component {
                 <div id = 'content'>
                     <h1> Profile Page </h1>
                     <Profile address={this.state.currentAddress} web3={this.props.web3}/>
+                    <AddToContact myAddress={this.state.myAddress} currentAddress={this.state.currentAddress}/>
                     <PaymentBar paymentMethod={this.makePayment} valueConvertor={this.props.web3}/>
                     <TransactionList list={this.state.transactions} web3 = {this.props.web3}/>
                 </div>

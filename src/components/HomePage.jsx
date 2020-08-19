@@ -3,6 +3,8 @@ import Profile from './Profile';
 import getWeb3 from '../getWeb3';
 import TransactionList from './TransactionList';
 import ContactList from './ContactList';
+import SearchBar from './SearchBar';
+
 //import TransactionList from './TransactionList';
 
 // dummy transactions
@@ -32,9 +34,9 @@ class HomePage extends Component {
        try{
             var address = await this.props.web3.eth.getAccounts();
             address = address[0];
-            var bal = await this.props.web3.eth.getBalance(address);
-            var balEth = this.props.web3.utils.fromWei(bal, "ether");
-            this.setState({providedAddress: address, balance:balEth});
+            // var bal = await this.props.web3.eth.getBalance(address);
+            // var balEth = this.props.web3.utils.fromWei(bal, "ether";
+            this.setState({providedAddress: address});
             
             // dummy data
             this.setState({transactions: txList, contacts: savedAccounts});
@@ -45,10 +47,11 @@ class HomePage extends Component {
     render() { 
         return ( 
             <div id = 'My Page' className="container">
+                <SearchBar/>
                 <div className="container row">
                     <div className="container col-5">
                         <h1>My Profile</h1>
-                        <Profile address={this.state.providedAddress} web3={this.props.web3} xval="Test"/>
+                        <Profile address={this.state.providedAddress} web3={this.props.web3}/>
                     </div>
                     <div className="container col">
                         <h1>My Contacts</h1>

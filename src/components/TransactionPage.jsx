@@ -31,46 +31,50 @@ class Transaction extends Component {
                 <h2> Transaction - {this.props.match.params.txHash} </h2>
                 <div id='result'>
                     <table id='resList' className="table table-bordered">
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Value</th>
-                        </tr>
-                        <tr>
-                            <td>Transction Hash</td>
-                            <td>{this.state.hash}</td>
-                        </tr>
-                        <tr>
-                            <td>From</td>
-                            <td><Link to={()=>'/profile/'+this.state.from}>{this.state.from}</Link></td>
-                        </tr>
-                        <tr>
-                            <td>To</td>
-                            <td><Link to={()=>'/profile/'+this.state.to}>{this.state.to}</Link></td>
-                        </tr>
-                        <tr>
-                            <td>Block Hash</td>
-                            <td>{this.state.blockHash}</td>
-                        </tr>
-                        <tr>
-                            <td>Block Number</td>
-                            <td>{this.state.blockNumber}</td>
-                        </tr>
-                        <tr>
-                            <td>Gas</td>
-                            <td>{this.state.gas}</td>
-                        </tr>
-                        <tr>
-                            <td>Gas Price</td>
-                            <td>{this.state.gasPrice}</td>
-                        </tr>
-                        <tr>
-                            <td>Nonce</td>
-                            <td>{this.state.nonce}</td>
-                        </tr>
-                        <tr>
-                            <td>Value</td>
-                            <td>{this.state.value}</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Transction Hash</td>
+                                <td>{this.state.hash}</td>
+                            </tr>
+                            <tr>
+                                <td>From</td>
+                                <td><Link to={()=>'/profile/'+this.state.from}>{this.state.from}</Link></td>
+                            </tr>
+                            <tr>
+                                <td>To</td>
+                                <td><Link to={()=>'/profile/'+this.state.to}>{this.state.to}</Link></td>
+                            </tr>
+                            <tr>
+                                <td>Block Hash</td>
+                                <td>{this.state.blockHash}</td>
+                            </tr>
+                            <tr>
+                                <td>Block Number</td>
+                                <td>{this.state.blockNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>Gas</td>
+                                <td>{this.state.gas}</td>
+                            </tr>
+                            <tr>
+                                <td>Gas Price</td>
+                                <td>{this.state.gasPrice}</td>
+                            </tr>
+                            <tr>
+                                <td>Nonce</td>
+                                <td>{this.state.nonce}</td>
+                            </tr>
+                            <tr>
+                                <td>Value</td>
+                                <td>{this.state.value}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
