@@ -4,6 +4,7 @@ import getWeb3 from '../getWeb3';
 import TransactionList from './TransactionList';
 import ContactList from './ContactList';
 import SearchBar from './SearchBar';
+import axios from 'axios'
 
 //import TransactionList from './TransactionList';
 
@@ -20,26 +21,47 @@ const txList = [
 ];
 
 const savedAccounts = [
-    {name: "Alice", address: "0x072Ee7De3d14c072f2a993F22C071606B498f527"},
-    {name: "Raghav", address: "0xcaca4cd658a660083C4c0b55281bE79849Ff6bB0"}
+    {contact_name: "Alice", contact_address: "0x072Ee7De3d14c072f2a993F22C071606B498f527"},
+    {contcat_name: "Raghav", contact_address: "0xcaca4cd658a660083C4c0b55281bE79849Ff6bB0"}
 ]
 
 class HomePage extends Component {
     constructor(props){
         super(props);
-        this.state = {providedAddress:0x0, balance:0, contacts:[], transactions:[]};
+        this.state = {providedAddress:0x0, balance:0, contacts:[], transactions:[],
+        errors:[]};
     }
 
    async componentDidMount(){
        try{
             var address = await this.props.web3.eth.getAccounts();
             address = address[0];
-            // var bal = await this.props.web3.eth.getBalance(address);
-            // var balEth = this.props.web3.utils.fromWei(bal, "ether";
             this.setState({providedAddress: address});
-            
-            // dummy data
-            this.setState({transactions: txList, contacts: savedAccounts});
+            axios.get('http://localhost:8000/api/contact/', {params: {owner: address}}).then(
+                (resp) =>{
+                    //console.log(resp);
+                    if(resp.status === 200){
+                        this.setState({contacts: resp.data});
+                    } else {
+                        alert("Unknown status while fetching contacts\n"+resp.statusText);
+                    }
+                },
+                (err) => {
+                    alert("An error occured while fetching contacts!\n"+err);
+                }
+            );
+            axios.get('http://localhost:8000/api/tx/', {params: {owner: address}}).then(
+                (resp) => {
+                    if(resp.status === 200){
+                        this.setState({transactions: resp.data});
+                    }else{
+                        alert("Unknown status while fetching transactions\n"+resp.statusText);
+                    }
+                },
+                (err) => { 
+                    alert("An error occured while fetching transactions!\n"+err);
+                }
+            );
        }catch{
            console.log("Loading address!");
        }

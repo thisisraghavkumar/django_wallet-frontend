@@ -7,7 +7,7 @@ const getWeb3 = ()=>
             if(window.ethereum){
                 console.log("Modern dapp broser detected!");
                 const web3 = new Web3(window.ethereum);
-                console.log(web3);
+                //console.log(web3);
                 try{
                     await window.ethereum.enable();
                     resolve(web3);

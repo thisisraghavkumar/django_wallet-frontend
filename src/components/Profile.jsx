@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Profile extends Component{
     constructor(props){
         super(props);
-        console.log(this.props);
+        //console.log(this.props);
         this.state = {balance: 0};
         this._isMounted = false;
     }

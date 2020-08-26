@@ -13,6 +13,9 @@ class TransactionList extends Component {
                                             </div>
                                         </div>
                                 });
+        if(listOfTransactions.length === 0){
+            listOfTransactions = <p>No transactions found!</p>
+        }
         return ( 
             <div className="container border">
                 {listOfTransactions}

@@ -13,6 +13,9 @@ class ContactList extends Component {
                         </div>     
                     </div>)
         });
+        if(list_of_contacts.length == 0){
+            list_of_contacts = <p>No saved contact found!</p>
+        }
         return ( 
             <div>
                 {list_of_contacts}

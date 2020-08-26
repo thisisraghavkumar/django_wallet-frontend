@@ -5,22 +5,25 @@ class TransactionCard extends Component {
 
     constructor(props){
         super(props);
-        this.state = {from: null, to: null, value: null, gasUsed: null};
+        var txDate = new Date(this.props.tx.date_of_transaction);
+        this.state = {from: null, to: null, value: null, gasUsed: null, date: txDate};
     }
 
     async componentDidMount(){
-        var tx = await this.props.web3.eth.getTransaction(this.props.tx.hash);
-        this.setState({from: tx.from, to: tx.to, value: tx.value, gasUsed: tx.gas});
+        var tx = await this.props.web3.eth.getTransaction(this.props.tx.txHash);
+        if(tx)
+            this.setState({from: tx.from, to: tx.to, value: tx.value, gasUsed: tx.gas});
     }
+
     render() { 
         return ( 
             <div className="container">
                 <p>
-                    <Link to={()=> '/transaction/'+this.props.tx.hash}>
-                        {this.props.tx.hash}
+                    <Link to={()=> '/transaction/'+this.props.tx.txHash}>
+                        {this.props.tx.txHash}
                     </Link>
                     <br/>
-                    <b>({this.props.tx.date.toString()})</b>
+                    <b>({this.state.date.toString()})</b>
                 </p>
                 <div className='container row'>
                     <div className='container col'>

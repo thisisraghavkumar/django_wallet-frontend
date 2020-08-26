@@ -5,8 +5,8 @@ class Contact extends Component {
     render() { 
         return ( 
             <div className="container">
-                <p><Link to={()=>'/profile/'+this.props.contact.address}>{this.props.contact.name}</Link></p>
-                <p>{this.props.contact.address}</p>
+                <p><Link to={()=>'/profile/'+this.props.contact.contact_address}>{this.props.contact.contact_name}</Link></p>
+                <p>{this.props.contact.contact_address}</p>
             </div>
          );
     }
